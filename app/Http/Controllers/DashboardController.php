@@ -11,6 +11,7 @@ class DashboardController extends Controller
     {
         return inertia()->render('Dashboard',[
             'site'=>$site,
+            'sites'=>Site::get(),
         ]); 
         
     }
