@@ -1,14 +1,32 @@
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, useForm } from '@inertiajs/vue3'
 import Modal from '../Components/Modal.vue'
 import { ref } from 'vue';
 import TextInput from '../Components/TextInput.vue';
 import InputLabel from '../Components/InputLabel.vue';
 import PrimaryButton from '../Components/PrimaryButton.vue';
+import InputError from '@/Components/InputError.vue';
+
 
 defineProps({
     sites: Array
 })
+
+let form = useForm({
+    domain: '',
+});
+let createSite = () => {
+
+    form.post('/sites', {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+            showNewModal.value = false
+        }
+    });
+
+}
+
 
 let showNewModal = ref(false);
 </script>
@@ -47,9 +65,10 @@ let showNewModal = ref(false);
                 </button>
                   
             </div>
-              <form class="mt-8">
+              <form class="mt-8" @submit.prevent="createSite()">
                 <InputLabel for="domain" value="Domain" class="sr-only" />
-                   <TextInput type="text" id="domain"  class="block w-full h-9 text-sm" placeholder="google.com"/>  
+                   <TextInput v-model="form.domain" type="text" id="domain"  class="block w-full h-9 text-sm" placeholder="google.com"/>  
+                 <InputError class="mt-2" :message="form.errors.domain" />
                    <PrimaryButton class="mt-6 ">
                     Add
                    </PrimaryButton>    
