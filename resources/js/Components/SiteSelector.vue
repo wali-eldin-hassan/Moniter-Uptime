@@ -1,13 +1,16 @@
 <script setup>
-    import { Link } from '@inertiajs/vue3'
-    import Modal from '../Components/Modal.vue'
-    import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3'
+import Modal from '../Components/Modal.vue'
+import { ref } from 'vue';
+import TextInput from '../Components/TextInput.vue';
+import InputLabel from '../Components/InputLabel.vue';
+import PrimaryButton from '../Components/PrimaryButton.vue';
 
-    defineProps({
-        sites: Array
-    })
+defineProps({
+    sites: Array
+})
 
-    let showNewModal = ref(false);
+let showNewModal = ref(false);
 </script>
 <template lang="">
     <VDropdown :distance="10">
@@ -31,7 +34,7 @@
         </template>
     </VDropdown>
     
-    <Modal @close="showNewModal = false" maxWidth="sm" v-model ="showNewModal" :show="showNewModal" >
+    <Modal @close="showNewModal = false" maxWidth="lg" v-model ="showNewModal" :show="showNewModal" >
         <div class="p-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-gray-800 font-medium">Content</h3>
@@ -42,7 +45,16 @@
                     </svg>
 
                 </button>
+                  
             </div>
+              <form class="mt-8">
+                <InputLabel for="domain" value="Domain" class="sr-only" />
+                   <TextInput type="text" id="domain"  class="block w-full h-9 text-sm" placeholder="google.com"/>  
+                   <PrimaryButton class="mt-6 ">
+                    Add
+                   </PrimaryButton>    
+              </form>
+
         </div>
     </Modal>
  </template>
