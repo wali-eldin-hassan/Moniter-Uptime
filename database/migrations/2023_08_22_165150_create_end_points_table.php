@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('site_id')->constrained()->onDelete('cascade');
             $table->string('location');
-            $table->unsignedInteger('frequency')->default(60);
-            $table->timestamp('next_check');    
+            $table->enum('frequency', [60, 300, 1800, 3600])->default(300);
+            $table->timestamp('next_check');
             $table->timestamps();
         });
     }
