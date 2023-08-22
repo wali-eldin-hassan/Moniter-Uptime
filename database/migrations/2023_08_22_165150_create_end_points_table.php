@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\EndPointFrequency;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('site_id')->constrained()->onDelete('cascade');
             $table->string('location');
-            $table->enum('frequency', [60, 300, 1800, 3600])->default(300);
+            $table->unsignedInteger('frequency')->default(EndPointFrequency::cases());
             $table->timestamp('next_check');
             $table->timestamps();
         });
