@@ -13,14 +13,20 @@ class Site extends Model
 
     protected $fillable = ['user_id', 'scheme', 'domain', 'default'];
 
+    function url()
+    {
+        return $this->scheme . '://' . $this->domain;
+    }
+
     function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    function endpoints() : HasMany {
+
+
+    function endpoints(): HasMany
+    {
         return $this->hasMany(EndPoint::class);
     }
-
-
 }
