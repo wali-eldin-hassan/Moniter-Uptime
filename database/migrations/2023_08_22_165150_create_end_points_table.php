@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('site_id')->constrained()->onDelete('cascade');
             $table->string('location');
-            $table->unsignedInteger('frequency')->default(EndPointFrequency::cases());
+            $table->unsignedInteger('frequency')->default(EndPointFrequency::Five_MINUTES->value);
             $table->timestamp('next_check');
             $table->timestamps();
         });
