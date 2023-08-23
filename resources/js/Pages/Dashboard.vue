@@ -6,12 +6,14 @@ import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
+import EndPoint from '@/Components/EndPoint.vue';
 
 
 let props = defineProps({
     site: Object,
     sites: Array,
     endpointsFrequencies: Object,
+    endpoints:Object,
 
 });
 
@@ -71,7 +73,67 @@ const storeEndPoint = () => {
                         Add
                     </PrimaryButton>
                 </form>
+
+                <div class="mt-8">
+                    <h2 class="font-semibold text-lg text-gray-800 leading-tight">
+                        currently monitring (x)
+                    </h2>
+                    <section class="container px-4 mx-auto">
+
+
+                        <div class="flex flex-col mt-6">
+                            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                    <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+
+                                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                                <tr>
+                                                    <th scope="col"
+                                                        class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-500">
+                                                            <span>Location</span>
+
+                                                    </th>
+
+                                                    <th scope="col"
+                                                        class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                                                        Frequency
+                                                    </th>
+
+                                                    <th scope="col"
+                                                        class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                                                        Last Check
+                                                    </th>
+
+                                                    <th scope="col"
+                                                        class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                                                        Last Status</th>
+
+                                                    <th scope="col"
+                                                        class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                                                        Uptime</th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                 
+
+                                                </tr>
+                                            </thead>
+                                            <tbody
+                                                class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900" v-for="endpoint in endpoints.data" :key="endpoint.id">
+                                                <EndPoint  :endpoint="endpoint" />
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+
             </div>
         </div>
-    </AuthenticatedLayout>
-</template>
+    </div>
+</AuthenticatedLayout></template>
