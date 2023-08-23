@@ -5,6 +5,8 @@ import SiteSelector from '@/Components/SiteSelector.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import InputError from '@/Components/InputError.vue';
+
 
 let props = defineProps({
     site: Object,
@@ -52,6 +54,8 @@ const storeEndPoint = () => {
                         <InputLabel for="location" value="Location" class="sr-only" />
                         <TextInput id="location" type="text" class="block w-full h-9 text-sm" placeholder="e.g/pricing"
                             v-model="form.location" />
+                        <InputError class="mt-2" :message="form.errors.location" />
+
                     </div>
                     <div>
                         <InputLabel for="frequency" value="Frequency" class="sr-only" />
