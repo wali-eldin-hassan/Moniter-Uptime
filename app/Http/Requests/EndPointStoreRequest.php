@@ -23,7 +23,7 @@ class EndPointStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'location' => 'required',
+            'location' => ['required','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'frequency' => 'required', new Enum(EndPointFrequency::class),
         ];
     }
