@@ -11,6 +11,7 @@ class SiteController extends Controller
         $data = $request->validate([
             'domain' => 'required', 'url'
         ]);
+        
         $site = $request->user()->sites()->create($data);
 
         return redirect()->route('dashboard', $site);
