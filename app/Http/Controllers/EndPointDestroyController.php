@@ -15,6 +15,6 @@ class EndPointDestroyController extends Controller
             abort(403);
         }
 
-        return back();
+        return back();  
     }
 }

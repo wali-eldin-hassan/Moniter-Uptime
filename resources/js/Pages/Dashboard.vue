@@ -121,7 +121,7 @@ const storeEndPoint = () => {
                                             </thead>
                                             <tbody
                                                 class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900" v-for="endpoint in endpoints.data" :key="endpoint.id">
-                                                <EndPoint  :endpoint="endpoint" />
+                                                <EndPoint  :endpoint="endpoint"  :endpointsFrequencies ="endpointsFrequencies" />
                                         </tbody>
                                     </table>
 
