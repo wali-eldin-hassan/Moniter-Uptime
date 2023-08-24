@@ -13,6 +13,9 @@ let props = defineProps({
     endpointsFrequencies: Object
 });
 
+const editing = ref(false);
+
+
 let form = useForm({
     location: props.endpoint.location,
     frequency: props.endpoint.frequency_value,
@@ -24,13 +27,20 @@ let deleteEndPoint = (id) => {
     }
 }
 
-watch(form, () => {
+let editEndpoint = debounce(() => {
+    form.patch(`/endpoints/${props.endpoint.id}`, {
+        preserveScroll: true,
 
+    });
+}, 500);
+
+
+watch(() => form.isDirty, () => {
+    editEndpoint();
 });
 
 
 
-const editing = ref(false);
 
 </script>
 

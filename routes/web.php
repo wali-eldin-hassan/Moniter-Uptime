@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EndPointDestroyController;
 use App\Http\Controllers\EndPointStoreController;
+use App\Http\Controllers\EndPointUpdateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Foundation\Application;
@@ -34,6 +35,7 @@ Route::get('/dashboard/{site?}', DashboardController::class)->middleware(['auth'
 Route::middleware('auth')->group(function () {
     Route::post('/sites', SiteController::class)->name('sites');
     Route::post('/sites/{site}/endpoints', EndPointStoreController::class);
+    Route::patch('/endpoints/{endpoint}', EndPointUpdateController::class);
     Route::delete('/endpoints/{endpoint}', EndPointDestroyController::class);
     
     

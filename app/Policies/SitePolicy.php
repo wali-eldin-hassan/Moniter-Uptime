@@ -14,7 +14,9 @@ class SitePolicy
     {
         //
     }
-    function storeEndPoint(User $user, Site $site)
+
+    
+    function store(User $user, Site $site)
     {
         
         return $user->id === $site->user_id;
