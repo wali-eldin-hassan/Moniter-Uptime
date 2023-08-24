@@ -37,6 +37,7 @@ const closeModal = () => {
 };
 </script>
 
+tea
 <template>
     <section class="space-y-6">
         <header>
@@ -47,7 +48,7 @@ const closeModal = () => {
                 your account, please download any data or information that you wish to retain.
             </p>
         </header>
-
+        
         <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">

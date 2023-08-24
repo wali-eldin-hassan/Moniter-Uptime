@@ -5,20 +5,30 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
-import { ref } from 'vue';
-import { usePage } from '@inertiajs/vue3';
-
-defineProps({
+import { ref, watch } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+import debounce from 'lodash/debounce';
+let props = defineProps({
     endpoint: Object,
     endpointsFrequencies: Object
 });
+
+let form = useForm({
+    location: props.endpoint.location,
+    frequency: props.endpoint.frequency_value,
+})
 
 let deleteEndPoint = (id) => {
     if (confirm("Are you sure you want to delete this endpoint")) {
         router.delete(`/endpoints/${id}`);
     }
 }
-let page = usePage();
+
+watch(form, () => {
+
+});
+
+
 
 const editing = ref(false);
 
@@ -29,7 +39,8 @@ const editing = ref(false);
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
             <template v-if="editing">
                 <InputLabel for="location" value="Location" class="sr-only" />
-                <TextInput id="location" type="text" class="block w-full h-9 text-sm" placeholder="e.g/pricing" />
+                <TextInput id="location" type="text" class="block w-full h-9 text-sm" placeholder="e.g/pricing"
+                    v-model="form.location" />
                 <InputError class="mt-2" />
             </template>
             <template v-else>
@@ -49,7 +60,8 @@ const editing = ref(false);
             <template v-if="editing">
                 <InputLabel for="frequency" value="Frequency" class="sr-only" />
                 <select name="frequency" id="frequency"
-                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md h-9 leading-none text-sm">
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md h-9 leading-none text-sm"
+                    v-model="form.frequency">
                     <option :value="frequency.frequency" v-for="frequency in endpointsFrequencies.data"
                         :key="frequency.frequency">
                         {{ frequency.label }}
@@ -102,6 +114,7 @@ const editing = ref(false);
             <PrimaryButton @click="editing = !editing">{{ editing ? `Done` : `Edit` }}</PrimaryButton>
 
         </td>
+
 
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
 

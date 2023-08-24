@@ -32,7 +32,6 @@ const updatePassword = () => {
     });
 };
 </script>
-
 <template>
     <section>
         <header>
