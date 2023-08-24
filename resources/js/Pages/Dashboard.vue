@@ -76,7 +76,7 @@ const storeEndPoint = () => {
 
                 <div class="mt-8">
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight">
-                        currently monitring (x)
+                        currently monitring ({{ endpoints.data.length }})
                     </h2>
                     <section class="container px-4 mx-auto">
 
