@@ -16,6 +16,10 @@ class  EndPoint extends Model
         'next_check'
     ];
 
+    function url()
+    {
+        return $this->site->url() . $this->location;
+    }
     function site(): BelongsTo
     {
         return $this->belongsTo(Site::class);
