@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\PreformEndpointCheck;
 use App\Models\EndPoint;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Console\Command;
@@ -27,9 +28,9 @@ class PreformCheck extends Command
      */
     public function handle()
     {
-        $endpoints = EndPoint::where('next_check', '<=', now())->each(function(){
-            
-            // jobs
+          EndPoint::where('next_check', '<=', now())->each(function ($endpoint) {
+
+            PreformEndpointCheck::dispatch($endpoint);
         });
 
 
