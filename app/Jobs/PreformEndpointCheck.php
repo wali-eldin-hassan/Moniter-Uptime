@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class PreformEndpointCheck
@@ -21,8 +22,6 @@ class PreformEndpointCheck
      */
     public function __construct(public EndPoint $endpoint)
     {
-
-    
     }
 
     /**
@@ -31,14 +30,17 @@ class PreformEndpointCheck
     public function handle(): void
     {
 
-        try {
-            $reponse = Http::get($this->endpoint->url());
-            dd($reponse->status());
-        } catch (Exception $e) {
-        }
+        DB::transaction(function () {
 
-        $this->endpoint->update([
-            'next_check' => now()->addSeconds($this->endpoint->frequency)
-        ]);
+            $reponse = Http::get($this->endpoint->url());
+            $this->endpoint->checks()->create([
+                'response_code' => $reponse->status(),
+                'response_body' => ! $reponse->successful() ? $reponse->body() : null,
+            ]);
+
+            $this->endpoint->update([
+                'next_check' => now()->addSeconds($this->endpoint->frequency)
+            ]);
+        });
     }
 }

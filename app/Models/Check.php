@@ -14,6 +14,6 @@ class Check extends Model
 
     function endponits(): BelongsTo
     {
-        return $this->belongsTo(EndPoint::class, 'end_point_id');
+        return $this->belongsTo(EndPoint::class);
     }
 }

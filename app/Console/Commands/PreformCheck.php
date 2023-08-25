@@ -28,8 +28,7 @@ class PreformCheck extends Command
      */
     public function handle()
     {
-          EndPoint::where('next_check', '<=', now())->each(function ($endpoint) {
-
+        EndPoint::where('next_check', '>=', now())->each(function ($endpoint) {
             PreformEndpointCheck::dispatch($endpoint);
         });
 
