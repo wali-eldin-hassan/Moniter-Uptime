@@ -22,7 +22,7 @@ class PreformEndpointCheck
     public function __construct(public EndPoint $endpoint)
     {
 
-        $this->endpoint = $endpoint;
+    
     }
 
     /**
@@ -33,9 +33,7 @@ class PreformEndpointCheck
 
         try {
             $reponse = Http::get($this->endpoint->url());
-
-            dd($reponse);
-
+            dd($reponse->status());
         } catch (Exception $e) {
         }
 
