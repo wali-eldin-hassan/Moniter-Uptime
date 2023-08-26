@@ -1,5 +1,5 @@
 <script setup>
-import { router } from '@inertiajs/vue3';
+import { router,Link } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -55,10 +55,10 @@ watch(() => form.isDirty, () => {
             </template>
             <template v-else>
                 <div>
-                    <h2 class="font-medium text-gray-800 dark:text-white ">
-                        {{ endpoint.location }}
+                    <Link :href="`/endpoints/${endpoint.id}`" class="font-medium text-gray-800 dark:text-white ">
+                    {{ endpoint.location }}
 
-                    </h2>
+                    </Link>
                     <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
                     </p>
                 </div>
