@@ -136,4 +136,5 @@ const storeEndPoint = () => {
             </div>
         </div>
     </div>
-</AuthenticatedLayout></template>
+</AuthenticatedLayout>
+</template>
