@@ -21,6 +21,7 @@ class EndpointResource extends JsonResource
             'location' => $this->location,
             'frequency_lable' => EndPointFrequency::from($this->frequency)->lable(),
             'frequency_value' => EndPointFrequency::from($this->frequency)->value,
+            'latest_check' => CheckResource::make($this->check)
 
         ];
     }
