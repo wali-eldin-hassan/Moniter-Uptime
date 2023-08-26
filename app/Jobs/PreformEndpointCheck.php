@@ -31,11 +31,10 @@ class PreformEndpointCheck
     {
 
         DB::transaction(function () {
-
             $reponse = Http::get($this->endpoint->url());
             $this->endpoint->checks()->create([
                 'response_code' => $reponse->status(),
-                'response_body' => ! $reponse->successful() ? $reponse->body() : null,
+                'response_body' =>  $reponse->successful() == false ? substr($reponse->body(), 0, 1024) : null,
             ]);
 
             $this->endpoint->update([

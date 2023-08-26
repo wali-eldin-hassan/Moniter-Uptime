@@ -93,17 +93,35 @@ watch(() => form.isDirty, () => {
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
             <div>
                 <h2 class="font-medium text-gray-800 dark:text-white ">
-                    Last Check
+                    <template v-if="endpoint.latest_check">
+                        <time :datetime="endpoint.latest_check.created_at.human"
+                            :title="endpoint.latest_check.created_at.date_time">
+                            {{ endpoint.latest_check.created_at.human }}</time>
+                    </template>
+                    <template v-else>
+                        -
+                    </template>
                 </h2>
-                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
-                </p>
+                <p class="text-sm font-normal text-gray-600 dark:text-gray-400"></p>
+
+
             </div>
         </td>
 
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
             <div>
                 <h2 class="font-medium text-gray-800 dark:text-white ">
-                    Last Status
+                    <template v-if="endpoint.latest_check">
+                        <span class="inline-flex items-center rounded-md px-2.5 py-0.5 text-sm font-medium"
+                            :class="{ 'bg-green-100 text-green-800': endpoint.latest_check.is_successful, 'bg-red-100 text-red-800': !endpoint.latest_check.is_successful }">
+                            {{ endpoint.latest_check.response_code }} {{ endpoint.latest_check.status_text }}
+                        </span>
+                    </template>
+                    <template v-else>
+                        <span class="inline-flex items-center rounded-md px-2.5 py-0.5 text-sm font-medium">
+                            -
+                        </span>
+                    </template>
                 </h2>
                 <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
                 </p>
