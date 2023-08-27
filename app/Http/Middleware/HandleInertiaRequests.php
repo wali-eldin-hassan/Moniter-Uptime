@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Enums\EndPointFrequency;
 use App\Http\Resources\EndpointFrequencyResource;
+use App\Http\Resources\SiteResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -42,6 +43,9 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'endpointsFrequencies' => EndpointFrequencyResource::collection(EndPointFrequency::cases()),
+            'sites' => $request->user() ? SiteResource::collection($request->user()->sites()->latest()->get()) : null,
+
+
 
         ]);
     }
