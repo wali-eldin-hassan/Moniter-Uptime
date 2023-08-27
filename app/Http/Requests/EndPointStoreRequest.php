@@ -24,7 +24,7 @@ class EndPointStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'location' => ['required',],
+            'location' => ['required','unique:end_points'],
             'frequency' => 'required', new Enum(EndPointFrequency::class),
         ];
     }
