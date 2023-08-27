@@ -1,5 +1,5 @@
 <script setup>
-import { router,Link } from '@inertiajs/vue3';
+import { router, Link } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -46,6 +46,7 @@ watch(() => form.isDirty, () => {
 
 <template >
     <tr>
+
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
             <template v-if="editing">
                 <InputLabel for="location" value="Location" class="sr-only" />
@@ -131,7 +132,12 @@ watch(() => form.isDirty, () => {
         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
             <div>
                 <h2 class="font-medium text-gray-800 dark:text-white ">
-                    Uptime
+                    <template v-if=" endpoint.uptime_percentage != null ">
+                        {{endpoint.uptime_percentage}}%
+                    </template>
+                    <template v-else>
+                        -
+                    </template>
                 </h2>
                 <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
                 </p>

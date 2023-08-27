@@ -23,6 +23,15 @@ class  EndPoint extends Model
         return $this->site->url() . $this->location;
     }
 
+    function uptimePercentage()
+    {
+        if(!$this->checks->count())
+        {
+            return null;
+        }
+        return number_format(($this->successfly_check_count / $this->checks->count()) * 100,2);
+    }
+
 
     function site(): BelongsTo
     {
