@@ -27,6 +27,10 @@ class Site extends Model
 
     function endpoints(): HasMany
     {
-        return $this->hasMany(EndPoint::class)->latest();
+        return $this->hasMany(EndPoint::class)
+            ->withCount(['checks as successfly_check_count' => function ($qurey) {
+                $qurey->where('response_code', '>=', '200')->where('response_code', '<', '300');
+            }])
+            ->latest();
     }
 }
