@@ -21,7 +21,8 @@ class EndPointPolicy
      */
     public function view(User $user, Endpoint $endpoint)
     {
-        //
+        return  $user->id === $endpoint->site->user_id;
+        
     }
 
     /**
