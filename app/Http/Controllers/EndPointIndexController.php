@@ -10,8 +10,9 @@ class EndPointIndexController extends Controller
 {
     function __invoke(Request $request, EndPoint $endpoint)
     {
+        $this->authorize('view', $endpoint);
 
-        return inertia()->render('Endpoint',[
+        return inertia()->render('Endpoint', [
             'endpoint' => EndpointResource::make($endpoint),
         ]);
     }
