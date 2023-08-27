@@ -17,7 +17,7 @@ class CheckResource extends JsonResource
         return [
             'id' => $this->id,
             'response_code' => $this->response_code,
-            'resonse_body' => $this->response_body,
+            'response_body' => $this->response_body,
             'is_successful' => $this->isSuccessful(),
             'status_text' => $this->statusText(),
             'created_at' => DateTimeResource::make($this->created_at),

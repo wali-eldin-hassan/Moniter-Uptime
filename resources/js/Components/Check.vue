@@ -18,6 +18,7 @@ defineProps({
             </span>
         </td>
         <td class="px-10 py-4 text-sm font-medium whitespace-nowrap">
+            
             <template v-if="check.response_body">
                 <button>View</button>
             </template>
