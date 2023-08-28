@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
-class PreformEndpointCheck implements ShouldQueue
+class PreformEndpointCheck implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,6 +22,11 @@ class PreformEndpointCheck implements ShouldQueue
      */
     public function __construct(public EndPoint $endpoint)
     {
+    }
+
+    function uniqId()
+    {
+        return 'endpint_id' . $this->endpoint->id;
     }
 
     /**
@@ -38,7 +43,7 @@ class PreformEndpointCheck implements ShouldQueue
             ]);
 
             $this->endpoint->update([
-                'next_check' => now()->addSeconds($this->endpoint->frequency)
+                'next_check' => now('Africa/Cairo')->addSeconds($this->endpoint->frequency)
             ]);
         });
     }
