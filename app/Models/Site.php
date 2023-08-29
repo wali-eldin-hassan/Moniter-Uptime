@@ -11,12 +11,16 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'scheme', 'domain', 'default'];
+    protected $fillable = ['user_id', 'scheme', 'domain', 'default', 'notifications_emails'];
+
+    public $cast = ['notifications_emails'];
 
     function url()
     {
         return $this->scheme . '://' . $this->domain;
     }
+
+
 
     function user(): BelongsTo
     {
