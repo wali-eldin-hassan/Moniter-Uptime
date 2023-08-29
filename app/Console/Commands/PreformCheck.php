@@ -31,7 +31,7 @@ class PreformCheck extends Command
         EndPoint::where('next_check', '>=', now())->each(function ($endpoint) {
             PreformEndpointCheck::dispatch($endpoint);
         });
-
+ 
 
         return Command::SUCCESS;
     }
