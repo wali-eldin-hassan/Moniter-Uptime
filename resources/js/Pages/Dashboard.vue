@@ -48,6 +48,7 @@ const storeEndPoint = () => {
         </template>
 
         <div class="py-12">
+        
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h2 class="font-semibold text-lg text-gray-800 leading-tight"> New Endpoint</h2>
                 <form @submit.prevent="storeEndPoint()"
@@ -140,7 +141,7 @@ const storeEndPoint = () => {
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight">Notification Channel</h2>
                     <div class="grid grid-cols-3 gap-12 mt-4">
 
-                        <EmailNotifications :site="site"/>
+                        <EmailNotifications :site="site" :emails="site.data.notification_emails "/>
 
                     </div>
                 </div>

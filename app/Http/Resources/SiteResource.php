@@ -15,8 +15,9 @@ class SiteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id"=>$this->id,
-            "domain"=>$this->domain,
+            "id" => $this->id,
+            "domain" => $this->domain,
+            'notification_emails' => json_decode($this->notification_emails)
 
         ];
     }

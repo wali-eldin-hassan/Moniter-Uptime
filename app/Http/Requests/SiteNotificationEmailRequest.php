@@ -23,7 +23,8 @@ class SiteNotificationEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', Rule::notIn($this->site->notification_email)],
+            'notification_emails' => ['required','email', Rule::notIn($this->site->notification_emails)],
+
         ];
     }
 }
