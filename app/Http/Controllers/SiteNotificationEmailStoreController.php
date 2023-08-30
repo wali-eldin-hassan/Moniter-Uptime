@@ -10,8 +10,12 @@ class SiteNotificationEmailStoreController extends Controller
 {
     function __invoke(SiteNotificationEmailRequest $request, Site $site)
     {
-        $site->update(['notification_emails' =>$request->email]);
+        $emails = json_decode($site->notification_emails, true) ?: [];
 
+        array_unshift($emails, $request->email);
+
+        $site->update(['notification_emails' => json_encode($emails)]);
+        
         return back();
     }
 }

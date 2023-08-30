@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('sites', function (Blueprint $table) {
             $table->json('notification_emails')->nullable();
+            
         });
     }
 
