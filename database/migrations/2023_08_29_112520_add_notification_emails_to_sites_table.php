@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sites', function (Blueprint $table) {
-            $table->json('notifications_emails')->nullable();
+            $table->json('notification_emails')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sites', function (Blueprint $table) {
-            $table->dropColumn('notifications_emails');
+            $table->dropColumn('notification_emails');
         });
     }
 };

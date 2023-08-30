@@ -140,7 +140,7 @@ const storeEndPoint = () => {
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight">Notification Channel</h2>
                     <div class="grid grid-cols-3 gap-12 mt-4">
 
-                        <EmailNotifications />
+                        <EmailNotifications :site="site"/>
 
                     </div>
                 </div>
