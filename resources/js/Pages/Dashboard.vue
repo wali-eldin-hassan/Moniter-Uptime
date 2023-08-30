@@ -7,13 +7,13 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import EndPoint from '@/Components/EndPoint.vue';
-
+import EmailNotifications from '@/Components/EmailNotifications.vue';
 
 let props = defineProps({
     site: Object,
     sites: Array,
     endpointsFrequencies: Object,
-    endpoints:Object,
+    endpoints: Object,
 
 });
 
@@ -51,7 +51,7 @@ const storeEndPoint = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h2 class="font-semibold text-lg text-gray-800 leading-tight"> New Endpoint</h2>
                 <form @submit.prevent="storeEndPoint()"
-                    class=" bg-white overflow-hidden shadow-sm sml:rounded-lg flex items-center p-3 mt-4 space-x-2">
+                    class=" bg-white overflow-hidden shadow-sm sm:rounded-lg flex items-center p-3 mt-4 space-x-2">
                     <div class="grow">
                         <InputLabel for="location" value="Location" class="sr-only" />
                         <TextInput id="location" type="text" class="block w-full h-9 text-sm" placeholder="e.g/pricing"
@@ -91,7 +91,7 @@ const storeEndPoint = () => {
                                                 <tr>
                                                     <th scope="col"
                                                         class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-500">
-                                                            <span>Location</span>
+                                                        <span>Location</span>
 
                                                     </th>
 
@@ -113,28 +113,38 @@ const storeEndPoint = () => {
                                                         class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-700 dark:text-gray-400">
                                                         Uptime</th>
 
-                                                        <th></th>
-                                                        <th></th>
-                                                 
+                                                    <th></th>
+                                                    <th></th>
+
 
                                                 </tr>
                                             </thead>
                                             <tbody
-                                                class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900" v-for="endpoint in endpoints.data" :key="endpoint.id">
-                                                <EndPoint  :endpoint="endpoint"  :endpointsFrequencies ="endpointsFrequencies" />
-                                        </tbody>
-                                    </table>
+                                                class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
+                                                v-for="endpoint in endpoints.data" :key="endpoint.id">
+                                                <EndPoint :endpoint="endpoint"
+                                                    :endpointsFrequencies="endpointsFrequencies" />
+                                            </tbody>
+                                        </table>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
+                    </section>
+
+                </div>
+                <div class="mt-8 flex flex-col">
+                    <h2 class="font-semibold text-lg text-gray-800 leading-tight">Notification Channel</h2>
+                    <div class="grid grid-cols-3 gap-12 mt-4">
+
+                        <EmailNotifications />
+
                     </div>
-
-
-                </section>
-
+                </div>
             </div>
         </div>
-    </div>
-</AuthenticatedLayout>
+    </AuthenticatedLayout>
 </template>
