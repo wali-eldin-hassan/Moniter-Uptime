@@ -11,9 +11,9 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'scheme', 'domain', 'default', 'notifications_emails'];
+    protected $fillable = ['user_id', 'scheme', 'domain', 'default', 'notification_emails'];
 
-    public $cast = ['notifications_emails'];
+    public $casts = ['notification_emails' => 'json'];
 
     function url()
     {

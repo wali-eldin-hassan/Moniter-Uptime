@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         return inertia()->render('Dashboard', [
             'site' => SiteResource::make($site),
-            'endpoints' =>EndpointResource::collection($site->endpoints),
+            'endpoints' => EndpointResource::collection($site->endpoints) ,
         ]);
     }
 }

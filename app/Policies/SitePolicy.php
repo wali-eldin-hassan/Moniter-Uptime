@@ -15,6 +15,11 @@ class SitePolicy
         //
     }
 
+    function storeNotificatonChannels(User $user, Site $site)
+    {
+        
+        return $user->id === $site->user_id;
+    }
     
     function store(User $user, Site $site)
     {
