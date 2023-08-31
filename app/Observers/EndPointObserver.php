@@ -13,6 +13,6 @@ class EndPointObserver
 
         $endPoint->location = "/" . trim(Arr::get($paresd, 'path'), '/');
         
-        $endPoint->next_check = now()->addSeconds($endPoint->frequency);
+        $endPoint->next_check = now('Africa/Cairo')->addSeconds($endPoint->frequency);
     }
 }
